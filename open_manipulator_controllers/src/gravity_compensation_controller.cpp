@@ -103,15 +103,16 @@ void GravityCompensationController::update(const ros::Time& time, const ros::Dur
   sensor_msgs::JointState joint_state_msg;
   joint_state_msg.header.stamp = time;
   joint_state_msg.name = joint_names_;
-  joint_state_msg.position.resize(kdl_chain_.getNrOfJoints());
+  joint_state_msg.position.resize(joint_names_.size());
 
   // Get the current joint positions
-  for (size_t i = 0; i < kdl_chain_.getNrOfJoints(); i++)
+  for (size_t i = 0; i < joint_names_.size(); i++)
   {
     q_(i) = effort_joint_handles_[i].getPosition();
     joint_state_msg.position[i] = q_(i);
   }
-  ROS_INFO("Current joint positions: %f %f %f %f %f %f", q_(0), q_(1), q_(2), q_(3), q_(4), q_(5));
+
+  ROS_INFO("Current joint positions: %f %f %f %f %f %f %f", q_(0), q_(1), q_(2), q_(3), q_(4), q_(5), q_(6));
 
   // Publish joint states
   joint_state_pub_.publish(joint_state_msg);

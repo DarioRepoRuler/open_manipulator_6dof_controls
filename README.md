@@ -20,6 +20,7 @@ roslaunch open_manipulator_controllers gravity_compensation_controller.launch si
 
 
 ## Hint for the exercise
+Be sure to switch every dynamixel motor to torque mode before executing the controllers of this package.
 
 Once you start the gravity compensation controller, you are able to record trajectories. This can be done using rosbag.
 Simply start the recording with the command:
